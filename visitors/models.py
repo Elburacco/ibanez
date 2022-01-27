@@ -17,3 +17,5 @@ class Visitor(models.Model):
         return self.name + ' ' + self.surname
 
 
+#TODO creator control
+
