@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -149,7 +150,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 3
+SITE_ID = 5
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
