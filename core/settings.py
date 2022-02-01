@@ -11,23 +11,18 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
+# from decouple import env
+from environ import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+env = Env()
+env.read_env(env_file='core/.env')
+DEBUG = env('DJANGO_DEBUG', default=False)
+
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)&)h48o#&3yi_p9%5&)-p)zulxbi2(v#*yurk8@$%41dd=rnpb'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = []
-
-
+SECRET_KEY = env('SECRET_KEY')
 # Application definition
 
 INSTALLED_APPS = [
@@ -55,11 +50,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    'core.middleware.BaseMiddleware',
 ]
-
 ROOT_URLCONF = 'core.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -78,20 +71,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
-
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -109,8 +96,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -138,19 +123,13 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
-}
 
-SITE_ID = 5
+SITE_ID = 6
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/admin'
 LOGOUT_REDIRECT_URL = '/'
+SOCIAL_ACCOUNT_APPS = {'google':
+                      {'SOCIAL_AUTH_PROVIDER': env('SOCIAL_AUTH_PROVIDER'),
+                       'SOCIAL_AUTH_NAME': env('SOCIAL_AUTH_NAME'),
+                       'SOCIAL_AUTH_ID': env('SOCIAL_AUTH_ID'),
+                       'SOCIAL_AUTH__SECRET_KEY': env('SOCIAL_AUTH__SECRET_KEY')}}
