@@ -29,6 +29,7 @@ pexpect==4.8.0
 pickleshare==0.7.5
 platformdirs==2.4.1
 prompt-toolkit==3.0.26
+psycopg2-binary==2.8.6
 ptyprocess==0.7.0
 pure-eval==0.2.2
 pycparser==2.21

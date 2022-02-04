@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
-# from decouple import env
 from environ import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,8 +20,8 @@ env.read_env(env_file='core/.env')
 DEBUG = env('DJANGO_DEBUG', default=False)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-ALLOWED_HOSTS = []
-SECRET_KEY = env('SECRET_KEY')
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 # Application definition
 
 INSTALLED_APPS = [
@@ -72,12 +71,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 # Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+# # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': env.db()
 }
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -124,7 +126,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-SITE_ID = 6
+SITE_ID = int(env('SITE_ID'))
 
 LOGIN_REDIRECT_URL = '/admin'
 LOGOUT_REDIRECT_URL = '/'
