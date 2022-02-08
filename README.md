@@ -4,6 +4,7 @@ Management is restricted to administrator who created entry.
 to run this app:
 
 create .env file with following credentials:
+
 SOCIAL_AUTH_PROVIDER=google
 SOCIAL_AUTH_NAME=<USERNAME>
 SOCIAL_AUTH_ID=<SOCIAL_AUTH_ID>
