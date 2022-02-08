@@ -13,6 +13,7 @@ DJANGO_DEBUG=True
 DATABASE_URL=<DATABASE_URL>
 SITE_ID=8
 
+  
 to build container:
 $docker-compose up --build
 $docker exec -t -i <CONTAINER ID> bash
