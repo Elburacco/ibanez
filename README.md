@@ -1,4 +1,4 @@
-ibanez is a simple app to manage visitors and their bank account numbers.
+Ibanez is a simple app to manage visitors and their bank account numbers.
 Management is restricted to administrator who created entry.
 
 to run this app:
@@ -23,14 +23,22 @@ SITE_ID=8
 
   
 to build container:
+  
 $docker-compose up --build
+  
 $docker exec -t -i <CONTAINER ID> bash
+  
 in container console:
+  
 $python3 manage.py makemigrations
+  
 $python3 manage.py migrate
+  
 #to create social account, credentials in .env
-$python3 manage.py load_social
-$python3 manage.py createsuperuser
+
+ $python3 manage.py load_social
+  
+ $python3 manage.py createsuperuser
 
 
-Currently users permissions are managed bu superuser
+ Currently users permissions are managed bu superuser
