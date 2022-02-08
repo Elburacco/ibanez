@@ -3,7 +3,7 @@ Management is restricted to administrator who created entry.
 
 to run this app:
 
-create .env file with following credentials:
+create .env file in core directory with following credentials:
 
 SOCIAL_AUTH_PROVIDER=google
 
