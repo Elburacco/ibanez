@@ -42,3 +42,6 @@ $python3 manage.py migrate
 
 
  Currently users permissions are managed bu superuser
+  
+ To run some basic permissions tests:
+  python3 manage.py test
